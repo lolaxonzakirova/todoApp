@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.todo-container {
+  background-color: #fff;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+#input {
+  width: 70%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#addButton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid rgb(150, 150, 150);
+}
+
+.delete-button {
+  background-color: #ff4136;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h1>Text</h1>
+    <input type="text" id="input" placeholder="text">
+    <button id="addButton">text</button>
+    <ul id="text"></ul>
+  </div>
+  <script >
+    document.addEventListener('DOMContentLoaded', function () {
+  let textt = document.getElementById('text');
+  let addText = document.getElementById('input');
+  let addButton = document.getElementById('addButton');
+  let array = [];
+
+  addButton.addEventListener('click', function () {
+    let Texttt = addText.value.trim();
+
+    if (Texttt !== '') {
+      array.push(Texttt);
+      Utextt();
+      addText.value = '';
+    }
+  });
+
+  function Utextt() {
+    textt.innerHTML = '';
+
+    array.forEach((item, index) => {
+      let li = document.createElement('li');
+      li.innerHTML = `
+        <span>${item}</span>
+        <button class="delete-button" data-index="${index}">O'chirish</button>
+      `;
+      textt.appendChild(li);
+
+      let deleteButton = li.querySelector('.delete-button');
+      deleteButton.addEventListener('click', function () {
+        let index =   (deleteButton.getAttribute('data-index'));
+        array.splice(index, 1);
+        Utextt();
+      });
+    });
+  }
+});
+
+  </script>
+</body>
+</html>
